@@ -217,6 +217,7 @@ sosa:isFeatureOfInterestOf a owl:ObjectProperty ;
   rdfs:label "is feature of interest of"@en ;
   skos:definition "A relation between a FeatureOfInterest and an Observation about it, an Actuation acting on it, or an act of Sampling that sampled it."@en ;
   rdfs:comment "A relation between a FeatureOfInterest and an Observation about it, an Actuation acting on it, or an act of Sampling that sampled it."@en ;
+  rdfs:comment "Note that in the context of an Observation this property links to the _proximate_ feature of interest, to which the observed property applies immediately. To link to the _ultimate_ feature of interest, for which the immediate feature of interest is a proxy, use sosa:hasUltimateFeatureOfInterest."@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:domainIncludes sosa:Sample ;
   schema:rangeIncludes sosa:Observation ;
@@ -256,6 +257,16 @@ sosa:Observation a rdfs:Class , owl:Class ;
     rdfs:comment "Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation."@en ;
     schema:domainIncludes sosa:Observation ;
     schema:rangeIncludes sosa:ObservableProperty ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:hasUltimateFeatureOfInterest a owl:ObjectProperty ;
+    rdfs:label "has ultimate feature of interest"@en ;
+    skos:definition "A relation between an Observation and the entity that the observation is designed to characterize. This property may be used when the proximate feature of interest of the observation is a proxy for the ultimate feature of interest, such as a sample. This property provides a direct link to the ultimate feature of interest relevant to the investigation, and is a convenient shortcut to following the transitive relationship from the (proximate) feature of interest through to the feature which it samples."@en ;
+    rdfs:comment "A relation between an Observation and the entity that the observation is designed to characterize. This property may be used when the proximate feature of interest of the observation is a proxy for the ultimate feature of interest, such as a sample. This property provides a direct link to the ultimate feature of interest relevant to the investigation, and is a convenient shortcut to following the transitive relationship from the (proximate) feature of interest through to the feature which it samples."@en ;
+    skos:example "For example, if the proximate feature of interest is a rock sample, the ultimate feature of interest might be a geologic unit or aquifer; if the proximate feature of interest is a blood sample, the ultimate feature of interest might be a patient, or the circulation system of the patient."@en ;
+    schema:domainIncludes sosa:Observation ;
+    schema:rangeIncludes sosa:FeatureOfInterest ;
+    schema:rangeIncludes sosa:Sample ;
     rdfs:isDefinedBy sosa: .
 
 sosa:Actuation a rdfs:Class , owl:Class ;

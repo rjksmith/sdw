@@ -218,6 +218,10 @@ sosa:usedProcedure
 sosa:hasFeatureOfInterest
   rdfs:isDefinedBy sosa: .
 
+sosa:hasUltimateFeatureOfInterest
+  owl:propertyChainAxiom ( sosa:hasFeatureOfInterest sosa:isSampleOf ) ;
+  rdfs:isDefinedBy sosa: .
+
 sosa:isFeatureOfInterestOf
   rdfs:isDefinedBy sosa: .
 
@@ -227,6 +231,7 @@ sosa:Observation a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa:Procedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ; rdfs:comment "A single observation may be designed to find the value of a property to help characterize more than one ultimate feature of interest." ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:allValuesFrom sosa:ObservableProperty ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:wasOriginatedBy ; owl:cardinality "1"^^xsd:nonNegativeInteger] ;
